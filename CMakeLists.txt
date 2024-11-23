@@ -8,13 +8,21 @@ project(monnidb VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Add the executable
-add_executable(monnidb
-    main.cpp
-    database.cpp
-    queryengine.cpp
-    table.cpp
+# Define source files and header files
+set(SOURCES
+  src/database.cpp
+  src/main.cpp
+  src/queryengine.cpp
+  src/table.cpp
 )
 
+set(HEADERS
+  include/database.h
+  include/queryengine.h
+  include/table.h)
+
+#Add executable target
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
 # Include directories
-target_include_directories(monnidb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE include)

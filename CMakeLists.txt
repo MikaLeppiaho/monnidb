@@ -30,3 +30,20 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
+# Add a CMake option for building tests
+option(BUILD_TESTS "Build and run tests" ON)
+
+if(BUILD_TESTS)
+    # Test executable
+    add_executable(tests tests/queryengine_test.cpp src/queryengine.cpp src/database.cpp src/table.cpp)
+    target_include_directories(tests PRIVATE include)
+
+    # Enable testing and add test case
+    enable_testing()
+    add_test(NAME QueryEngineTests COMMAND tests)
+
+    # Run tests after build
+    add_custom_command(TARGET tests
+                       POST_BUILD
+                       COMMAND ctest --output-on-failure)
+endif()

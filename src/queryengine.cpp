@@ -2,6 +2,7 @@
 #include <iostream>
 
 QueryEngine::QueryEngine(Database &db) : database(db) {}
+QueryEngine::QueryEngine() : database(*(new Database())) {}
 
 void QueryEngine::execute(const std::string &query) {
 	std::string query_start{query.substr(0, query.find(" "))};
@@ -19,6 +20,12 @@ void QueryEngine::execute(const std::string &query) {
 		return;
 	}
 	std::cout << "Invalid query!\n";
+}
+
+std::vector<std::string> QueryEngine::parse_query(const std::string &query) {
+	std::vector<std::string> result;
+
+	return result;
 }
 
 void QueryEngine::handle_create_table(const std::string &query) {

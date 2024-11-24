@@ -5,6 +5,7 @@
 class QueryEngine {
   public:
 	explicit QueryEngine(Database &db);
+	QueryEngine(); // default constructor for testing
 
 	/**
 	 * Execute databasequery
@@ -12,6 +13,13 @@ class QueryEngine {
 	 * @return void
 	 */
 	void execute(const std::string &query);
+
+	/**
+	 * Parse query for execution
+	 * @param query String query with .
+	 * @return void
+	 */
+	std::vector<std::string> parse_query(const std::string &query);
 
   private:
 	Database &database;

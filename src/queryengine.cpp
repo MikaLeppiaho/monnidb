@@ -25,6 +25,9 @@ void QueryEngine::execute(const std::string &query) {
 std::vector<std::string> QueryEngine::parse_query(const std::string &query) {
 	std::vector<std::string> result;
 
+	result.push_back("Hello");
+	result.push_back("World");
+
 	return result;
 }
 
